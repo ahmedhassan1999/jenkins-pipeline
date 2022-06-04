@@ -7,4 +7,5 @@ priv2_cidr = "10.0.4.0/24"
 region     = "us-east-1"
 WS         = "dev" 
 AMI = "ami-09d56f8956ab235b3"
-
+db_Pass = "202997hH7"
+db_User = "ahmed"
