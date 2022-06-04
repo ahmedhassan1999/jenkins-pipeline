@@ -5,11 +5,7 @@ pipeline {
        terraform 'terraform'
     }
     stages {
-         stage('Git checkout') {
-           steps{
-                  git 'https://github.com/ahmedhassan1999/new-terraform.git'
-            }
-        }
+        
         stage('terraform format check') {
             steps{
                 sh 'terraform fmt'
