@@ -22,7 +22,7 @@ pipeline {
                     withAWS(credentials:'iam') 
                     {
                           sh 'terraform init'
-                          sh 'terraform apply --var-file terraform/Dev.tfvars -lock=false -auto-approve'
+                          sh 'terraform apply --var-file ./terraform/Dev.tfvars -lock=false -auto-approve'
     
                     }
                     
