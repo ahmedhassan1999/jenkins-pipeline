@@ -15,7 +15,7 @@ pipeline {
                 sh 'terraform fmt'
             }
         }
-       /*   stage('terraform Init') {
+          stage('terraform Init') {
             steps{
                 withAWS(region:'us-east-1') 
                 {
@@ -30,7 +30,7 @@ pipeline {
                 }
               
             }
-        }*/
+        }
         
        
        
