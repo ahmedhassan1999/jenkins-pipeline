@@ -47,6 +47,7 @@ pipeline
                 {
                     withAWS(credentials:'iam') 
                     {
+                            sh  'touch mykey.pem'
                             sh 'chmod 777 mykey.pem'
                             sh 'terraform -chdir=terraform/ output -raw key > mykey.pem'
                             sh 'chmod 400 mykey.pem'
