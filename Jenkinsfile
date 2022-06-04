@@ -48,9 +48,9 @@ pipeline
                     withAWS(credentials:'iam') 
                     {
                            
-                            sh 'chmod 777 mykey.pem'
-                            sh 'terraform -chdir=terraform/ output -raw key > mykey.pem'
-                            sh 'chmod 400 mykey.pem'
+                            sh 'chmod 777 /var/jenkins_home/mykey.pem'
+                            sh 'terraform -chdir=terraform/ output -raw key > /var/jenkins_home/mykey.pem'
+                            sh 'chmod 400 /var/jenkins_home/mykey.pem'
     
                     }
                     
