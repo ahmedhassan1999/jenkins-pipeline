@@ -17,7 +17,7 @@ pipeline {
                 {
                     withAWS(credentials:'iam') 
                     {
-                          sh 'terraform init'
+                          sh 'terraform -chdir=terraform/  init'
                           sh 'terraform -chdir=terraform/ apply --var-file Dev.tfvars -lock=false -auto-approve'
     
                     }
