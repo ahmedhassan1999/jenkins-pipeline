@@ -69,10 +69,12 @@ pipeline
             steps
             {
                   sh '''
+                   
+                   $public = terraform -chdir=terraform/ output -raw pubEC2
 
                     cat <<EOF > /var/jenkins_home/.ssh/config
                     host bastion
-                    HostName `terraform -chdir=terraform/ output -raw pubEC2`
+                    HostName  $public
                     User ubuntu
                     identityFile /var/jenkins_home/mykey.pem
                     StrictHostKeyChecking=no
