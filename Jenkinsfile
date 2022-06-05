@@ -72,20 +72,20 @@ pipeline
                 {
                     withAWS(credentials:'iam') 
                     {
-                        sh '''
+                                    sh '''
                         
                                 public=$(terraform -chdir=terraform/ output -raw pubEC2)
                                 
                                 private=$(terraform -chdir=terraform/ output -raw privEC2)
 
                                         cat <<EOF > /var/jenkins_home/.ssh/config
-                                    host bastion
+                                host bastion
                                     HostName $public
                                     User ubuntu
                                     identityFile /var/jenkins_home/mykey.pem
                                     StrictHostKeyChecking=no
 
-                                   host private_instance
+                                host private_instance
                                     HostName $private
                                     user  ubuntu
                                     ProxyCommand ssh bastion -W %h:%p
