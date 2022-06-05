@@ -39,7 +39,7 @@ pipeline
               
             }
         } */
-        stage('private_key')
+     /*   stage('private_key')
         {
             steps
             {
@@ -62,6 +62,21 @@ pipeline
             }
 
 
+        }*/ 
+
+        stage('create ansible file')
+        {
+            stages
+            {
+
+                echo -e 'host bastion\nHostName `terraform -chdir=terraform/ output -raw pubEC2`\n
+                 User ubuntu\nidentityFile' > /var/jenkins_home/.ssh/conf
+    
+
+
+            }
+
+
         }
 
         
@@ -71,7 +86,6 @@ pipeline
 }
 
     
-
 
 
 
