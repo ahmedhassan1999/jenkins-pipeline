@@ -70,8 +70,20 @@ pipeline
             {
                   sh '''
 
-                    echo  -e "host bastion\nHostName `terraform -chdir=terraform/ output -raw pubEC2`
-                     User ubuntu\nidentityFile "  >  /var/jenkins_home/.ssh/conf
+                    cat <<EOF > /var/jenkins_home/.ssh/config
+                    host bastion
+                    HostName `terraform -chdir=terraform/ output -raw pubEC2`
+                    User ubuntu
+                    identityFile /var/jenkins_home/mykey.pem
+                    StrictHostKeyChecking=no
+
+                    host private_instance
+                    HostName  `terraform -chdir=terraform/ output -raw privEC2`
+                    user  ubuntu
+                    ProxyCommand ssh bastion -W %h:%p
+                    identityFile /var/jenkins_home/mykey.pem
+                    StrictHostKeyChecking=no
+                    EOF
 
                   '''
                    
