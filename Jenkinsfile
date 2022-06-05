@@ -75,16 +75,18 @@ pipeline
                         sh '''
                         
                         public=$(terraform -chdir=terraform/ output -raw pubEC2)
+                         
+                        private=$(terraform -chdir=terraform/ output -raw privEC2)
 
                             cat <<EOF > /var/jenkins_home/.ssh/config
                             host bastion
-                            HostName  $public
+                            HostName $public
                             User ubuntu
                             identityFile /var/jenkins_home/mykey.pem
                             StrictHostKeyChecking=no
 
                             host private_instance
-                            HostName  `terraform -chdir=terraform/ output -raw privEC2`
+                            HostName $private
                             user  ubuntu
                             ProxyCommand ssh bastion -W %h:%p
                             identityFile /var/jenkins_home/mykey.pem
