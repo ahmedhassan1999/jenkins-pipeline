@@ -91,7 +91,7 @@ pipeline
                                     ProxyCommand ssh bastion -W %h:%p
                                     identityFile /var/jenkins_home/mykey.pem
                                     StrictHostKeyChecking=no
-                                    EOF
+                                    
                                     '''
                     }
                 }       
