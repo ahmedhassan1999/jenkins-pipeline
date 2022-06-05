@@ -70,8 +70,7 @@ pipeline
             {
                   sh '''
 
-                echo -e 'host bastion\nHostName `terraform -chdir=terraform/ output -raw pubEC2`\n
-                 User ubuntu\nidentityFile' > /var/jenkins_home/.ssh/conf
+                    echo  -e 'host bastion\nHostName `terraform -chdir=terraform/ output -raw pubEC2` '  >  /var/jenkins_home/.ssh/conf
 
                   '''
                    
