@@ -68,26 +68,32 @@ pipeline
         {
             steps
             {
-                  sh '''
-                   
-                   public=$(terraform -chdir=terraform/ output -raw pubEC2)
+                 withAWS(region:'us-east-1') 
+                {
+                    withAWS(credentials:'iam') 
+                    {
+                        sh '''
+                        
+                        public=$(terraform -chdir=terraform/ output -raw pubEC2)
 
-                    cat <<EOF > /var/jenkins_home/.ssh/config
-                    host bastion
-                    HostName  $public
-                    User ubuntu
-                    identityFile /var/jenkins_home/mykey.pem
-                    StrictHostKeyChecking=no
+                            cat <<EOF > /var/jenkins_home/.ssh/config
+                            host bastion
+                            HostName  $public
+                            User ubuntu
+                            identityFile /var/jenkins_home/mykey.pem
+                            StrictHostKeyChecking=no
 
-                    host private_instance
-                    HostName  `terraform -chdir=terraform/ output -raw privEC2`
-                    user  ubuntu
-                    ProxyCommand ssh bastion -W %h:%p
-                    identityFile /var/jenkins_home/mykey.pem
-                    StrictHostKeyChecking=no
-                    EOF
+                            host private_instance
+                            HostName  `terraform -chdir=terraform/ output -raw privEC2`
+                            user  ubuntu
+                            ProxyCommand ssh bastion -W %h:%p
+                            identityFile /var/jenkins_home/mykey.pem
+                            StrictHostKeyChecking=no
+                            EOF
 
-                  '''
+                        '''
+                    }
+                }       
                    
     
 
