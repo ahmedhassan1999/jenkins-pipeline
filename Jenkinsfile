@@ -83,14 +83,14 @@ pipeline
                             HostName $public
                             User ubuntu
                             identityFile /var/jenkins_home/mykey.pem
-                            StrictHostKeyChecking=no
+                           
 
                             host private_instance
                             HostName $private
                             user  ubuntu
                             ProxyCommand ssh bastion -W %h:%p
                             identityFile /var/jenkins_home/mykey.pem
-                            StrictHostKeyChecking=no
+                            
                             
                         EOF
                         '''
