@@ -70,7 +70,7 @@ pipeline
             {
                   sh '''
                    
-                   $public = terraform -chdir=terraform/ output -raw pubEC2
+                   public = $(terraform -chdir=terraform/ output -raw pubEC2)
 
                     cat <<EOF > /var/jenkins_home/.ssh/config
                     host bastion
