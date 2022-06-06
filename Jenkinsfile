@@ -64,7 +64,7 @@ pipeline
 
         }*/ 
 
-        stage('create ansible file')
+      /*   stage('create ansible file')
         {
             steps
             {
@@ -94,7 +94,10 @@ pipeline
                                     
                                     '''
                     }
-                }       
+                } 
+
+                
+                      
                    
     
 
@@ -102,6 +105,26 @@ pipeline
             }
 
 
+
+        }*/
+
+        stage('ansible run playbook')
+        {
+            steps
+            {
+
+                 withAWS(region:'us-east-1') 
+                {
+                    withAWS(credentials:'iam') 
+                    {
+                        sh 'ansible-playbook -i inventory --private-key /var/jenkins_home/mykey.pem ansible/playbook.yml'
+
+                    }
+                }    
+
+
+
+            }
         }
 
         
