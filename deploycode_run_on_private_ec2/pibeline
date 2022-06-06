@@ -1,0 +1,28 @@
+pipeline {
+    agent {label "private1"}
+ environment {
+        NEW_TAG="1.0"
+        IMG_NAME="ahmedhassan55/nodejs"
+        
+    }
+    
+    stages {
+        stage('Build') {
+            steps {
+                // Get some code from a GitHub repository
+                git branch: 'rds_redis', url: 'https://github.com/ahmedhassan1999/jenkins_nodejs_example.git'
+                   withCredentials([usernamePassword(credentialsId: 'docker_id', usernameVariable: 'USERNAME', passwordVariable: 'PASS')]) {
+                       sh "sudo docker build -f dockerfile -t ${IMG_NAME}:${NEW_TAG} ."
+                      sh "sudo docker run -d -p 3000:3000 -e RDS_HOSTNAME=$RDS_HOSTNAME -e RDS_USERNAME=$user_name -e RDS_PASSWORD=$passwd -e RDS_PORT=$RDS_PORT -e REDIS_HOSTNAME=$REDIS_HOSTNAME -e REDIS_PORT=$REDIS_PORT   ${IMG_NAME}:${NEW_TAG}"
+                       sh 'sudo docker login -u $USERNAME -p $PASS'
+                       sh "sudo docker push ${IMG_NAME}:${NEW_TAG}"
+                      
+                      
+                  }
+            
+            }
+            
+            
+            }
+        }
+    }

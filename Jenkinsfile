@@ -29,8 +29,8 @@ pipeline
                 {
                     withAWS(credentials:'iam') 
                     {
-                          sh 'terraform -chdir=terraform/  init'
-                          sh 'terraform -chdir=terraform/ apply --var-file Dev.tfvars -lock=false -auto-approve'
+                        //  sh 'terraform -chdir=terraform/  init'
+                          sh 'terraform -chdir=terraform/ destroy --var-file Dev.tfvars -lock=false -auto-approve'
     
                     }
                     
@@ -39,7 +39,7 @@ pipeline
               
             }
         } 
-        stage('private_key')
+     /*    stage('private_key')
         {
             steps
             {
@@ -126,7 +126,7 @@ pipeline
 
 
             }
-        }
+        }*/
 
         
 
