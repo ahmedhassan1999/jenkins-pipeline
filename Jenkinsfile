@@ -116,7 +116,9 @@ pipeline
                  withAWS(region:'us-east-1') 
                 {
                     withAWS(credentials:'iam') 
+
                     {
+                        sh 'ansible all --list-hosts'
                         sh 'ansible-playbook -i inventory --private-key /var/jenkins_home/mykey.pem ansible/playbook.yml'
 
                     }
