@@ -10,7 +10,7 @@ pipeline
     {
 
         
-       /*  stage('terraform format check') 
+        stage('terraform format check') 
         {
             steps
             {
@@ -38,8 +38,8 @@ pipeline
                 }
               
             }
-        } */
-     /*   stage('private_key')
+        } 
+        stage('private_key')
         {
             steps
             {
@@ -62,9 +62,9 @@ pipeline
             }
 
 
-        }*/ 
+        }
 
-      /*   stage('create ansible file')
+        stage('create ansible file')
         {
             steps
             {
@@ -98,15 +98,14 @@ pipeline
 
                 
                       
-                   
-    
+
 
 
             }
 
 
 
-        }*/
+        }
 
         stage('ansible run playbook')
         {
