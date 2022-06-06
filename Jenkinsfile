@@ -119,7 +119,7 @@ pipeline
 
                     {
                         sh 'ansible all --list-hosts'
-                        sh 'ansible-playbook -i inventory --private-key /var/jenkins_home/mykey.pem ansible/playbook.yml'
+                        sh 'ansible-playbook -i ansible/inventory --private-key /var/jenkins_home/mykey.pem ansible/playbook.yml'
 
                     }
                 }    
