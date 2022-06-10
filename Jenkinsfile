@@ -10,7 +10,7 @@ pipeline
     {
 
         
-        stage('terraform format check') 
+       /* stage('terraform format check') 
         {
             steps
             {
@@ -38,7 +38,7 @@ pipeline
                 }
               
             }
-        } 
+        } */
          stage('private_key')
         {
             steps
